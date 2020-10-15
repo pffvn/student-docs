@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="google" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script>
+    (function(H){H.className=H.className.replace(/\bgoogle\b/,'google-js')})(document.documentElement)
+    </script>
+    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+    <title>
+      Google - Site Reliability Engineering
+    </title>
+    <script src="../js/google.js">
+    </script>
+    <script>
+    new gweb.analytics.AutoTrack({profile:"UA-75468017-1"});
+    </script>
+    <link href="../css/opensans.css" rel=
+    "stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href=
+    '../css/roboto.css'
+    rel='stylesheet' type='text/css'>
+    <link href="../../images/favicon.ico" rel="shortcut icon">
+  </head>
+  <body>
+    <div class="menu-closed" id="curtain"></div>
+    <div class="header clearfix">
+      <div class="header-wrraper">
+        <a class="expand" id="burger-menu"></a>
+        <h2 class="chapter-title">
+          Part V - Conclusions
+        </h2>
+      </div>
+    </div>
+    <div class="expands" id="overlay-element">
+      <div class="logo">
+        <a href="https://www.google.com"><img alt="Google" src=
+        "../../images/googlelogo-grey-color.png"></a>
+      </div>
+      <ol class="dropdown-content hide" id="drop-down">
+        <li>
+          <a class="menu-buttons" href="../index.html">Table of Contents</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="foreword.html">Foreword</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="preface.html">Preface</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part1.html">Part I - Introduction</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="introduction.html">1. Introduction</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="production-environment.html">2. The
+          Production Environment at Google, from the Viewpoint of an SRE</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part2.html">Part II - Principles</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="embracing-risk.html">3. Embracing
+          Risk</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="service-level-objectives.html">4.
+          Service Level Objectives</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="eliminating-toil.html">5. Eliminating
+          Toil</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="monitoring-distributed-systems.html">6.
+          Monitoring Distributed Systems</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="automation-at-google.html">7. The
+          Evolution of Automation at Google</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="release-engineering.html">8. Release
+          Engineering</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="simplicity.html">9. Simplicity</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part3.html">Part III - Practices</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="practical-alerting.html">10. Practical
+          Alerting</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="being-on-call.html">11. Being
+          On-Call</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="effective-troubleshooting.html">12.
+          Effective Troubleshooting</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="emergency-response.html">13. Emergency
+          Response</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="managing-incidents.html">14. Managing
+          Incidents</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="postmortem-culture.html">15. Postmortem
+          Culture: Learning from Failure</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="tracking-outages.html">16. Tracking
+          Outages</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="testing-reliability.html">17. Testing
+          for Reliability</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="software-engineering-in-sre.html">18.
+          Software Engineering in SRE</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="load-balancing-frontend.html">19. Load
+          Balancing at the Frontend</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="load-balancing-datacenter.html">20. Load
+          Balancing in the Datacenter</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="handling-overload.html">21. Handling
+          Overload</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="addressing-cascading-failures.html">22.
+          Addressing Cascading Failures</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="managing-critical-state.html">23.
+          Managing Critical State: Distributed Consensus for Reliability</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href=
+          "distributed-periodic-scheduling.html">24. Distributed Periodic
+          Scheduling with Cron</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="data-processing-pipelines.html">25. Data
+          Processing Pipelines</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="data-integrity.html">26. Data Integrity:
+          What You Read Is What You Wrote</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="reliable-product-launches.html">27.
+          Reliable Product Launches at Scale</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part4.html">Part IV - Management</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="accelerating-sre-on-call.html">28.
+          Accelerating SREs to On-Call and Beyond</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="dealing-with-interrupts.html">29.
+          Dealing with Interrupts</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="operational-overload.html">30. Embedding
+          an SRE to Recover from Operational Overload</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href=
+          "communication-and-collaboration.html">31. Communication and
+          Collaboration in SRE</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="evolving-sre-engagement-model.html">32.
+          The Evolving SRE Engagement Model</a>
+        </li>
+        <li class='active'>
+          <a class="menu-buttons" href="part5.html">Part V - Conclusions</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="lessons-learned.html">33. Lessons
+          Learned from Other Industries</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="conclusion.html">34. Conclusion</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="availability-table.html">Appendix A.
+          Availability Table</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="service-best-practices.html">Appendix B.
+          A Collection of Best Practices for Production Services</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="incident-document.html">Appendix C.
+          Example Incident State Document</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="postmortem.html">Appendix D. Example
+          Postmortem</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="launch-checklist.html">Appendix E.
+          Launch Coordination Checklist</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="bibliography.html">Appendix F.
+          Bibliography</a>
+        </li>
+      </ol>
+    </div>
+    <div id="maia-main" role="main">
+      <div class="maia-teleport" id="content"></div>
+      <div class="content">
+        <div data-type="part" id="part_conclusions">
+          <h1 class="heading">
+            <span class="label">Part V.</span> Conclusions
+          </h1>
+          <div class="partintro">
+            <p>
+              Having covered much ground in terms of how SRE works at Google, and how the
+              principles and practices we've developed might be applied to other organizations in
+              our field, it now seems appropriate to turn our view to <a data-type="xref"
+              data-xrefstyle="chap-num-title" href=
+              "lessons-learned.html">Lessons Learned from Other Industries</a>,
+              to examine how SRE's practices compare to other industries where reliability is
+              critically important.
+            </p>
+            <p>
+              Finally, Google's VP for Site Reliability Engineering, Benjamin Lutch, writes about
+              SRE's evolution over the course of his career in <a href=
+              "conclusion.html">his conclusion</a>, examining SRE through the
+              lens of some observations on the aviation industry.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="maia-aux">
+        <div class="previous">
+          <a href="evolving-sre-engagement-model.html">
+          <p class="footer-caption">
+            previous
+          </p>
+          <p class="chapter-link">
+            Chapter 32- The Evolving SRE Engagement Model
+          </p></a>
+        </div>
+        <div class="next">
+          <a href="lessons-learned.html">
+          <p class="footer-caption">
+            next
+          </p>
+          <p class="chapter-link">
+            Chapter 33- Lessons Learned from Other Industries
+          </p></a>
+        </div>
+        <p class="footer-link">
+          Copyright © 2017 Google, Inc. Published by O'Reilly Media, Inc. Licensed under <a href=
+          "https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>
+        </p>
+      </div>
+    </div>
+    <script src="../js/main.min.js">
+    </script> 
+    <script src="../js/maia.js">
+    </script>
+  </body>
+</html>

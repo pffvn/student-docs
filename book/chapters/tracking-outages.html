@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html class="google" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script>
+    (function(H){H.className=H.className.replace(/\bgoogle\b/,'google-js')})(document.documentElement)
+    </script>
+    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+    <title>
+      Google - Site Reliability Engineering
+    </title>
+    <script src="../js/google.js">
+    </script>
+    <script>
+    new gweb.analytics.AutoTrack({profile:"UA-75468017-1"});
+    </script>
+    <link href="../css/opensans.css" rel=
+    "stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href=
+    '../css/roboto.css'
+    rel='stylesheet' type='text/css'>
+    <link href="../../images/favicon.ico" rel="shortcut icon">
+  </head>
+  <body>
+    <div class="menu-closed" id="curtain"></div>
+    <div class="header clearfix">
+      <div class="header-wrraper">
+        <a class="expand" id="burger-menu"></a>
+        <h2 class="chapter-title">
+          Chapter 16 - Tracking Outages
+        </h2>
+      </div>
+    </div>
+    <div class="expands" id="overlay-element">
+      <div class="logo">
+        <a href="https://www.google.com"><img alt="Google" src=
+        "../../images/googlelogo-grey-color.png"></a>
+      </div>
+      <ol class="dropdown-content hide" id="drop-down">
+        <li>
+          <a class="menu-buttons" href="../index.html">Table of Contents</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="foreword.html">Foreword</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="preface.html">Preface</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part1.html">Part I - Introduction</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="introduction.html">1. Introduction</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="production-environment.html">2. The
+          Production Environment at Google, from the Viewpoint of an SRE</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part2.html">Part II - Principles</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="embracing-risk.html">3. Embracing
+          Risk</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="service-level-objectives.html">4.
+          Service Level Objectives</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="eliminating-toil.html">5. Eliminating
+          Toil</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="monitoring-distributed-systems.html">6.
+          Monitoring Distributed Systems</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="automation-at-google.html">7. The
+          Evolution of Automation at Google</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="release-engineering.html">8. Release
+          Engineering</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="simplicity.html">9. Simplicity</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part3.html">Part III - Practices</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="practical-alerting.html">10. Practical
+          Alerting</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="being-on-call.html">11. Being
+          On-Call</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="effective-troubleshooting.html">12.
+          Effective Troubleshooting</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="emergency-response.html">13. Emergency
+          Response</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="managing-incidents.html">14. Managing
+          Incidents</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="postmortem-culture.html">15. Postmortem
+          Culture: Learning from Failure</a>
+        </li>
+        <li class='active'>
+          <a class="menu-buttons" href="tracking-outages.html">16. Tracking
+          Outages</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="testing-reliability.html">17. Testing
+          for Reliability</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="software-engineering-in-sre.html">18.
+          Software Engineering in SRE</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="load-balancing-frontend.html">19. Load
+          Balancing at the Frontend</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="load-balancing-datacenter.html">20. Load
+          Balancing in the Datacenter</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="handling-overload.html">21. Handling
+          Overload</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="addressing-cascading-failures.html">22.
+          Addressing Cascading Failures</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="managing-critical-state.html">23.
+          Managing Critical State: Distributed Consensus for Reliability</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href=
+          "distributed-periodic-scheduling.html">24. Distributed Periodic
+          Scheduling with Cron</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="data-processing-pipelines.html">25. Data
+          Processing Pipelines</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="data-integrity.html">26. Data Integrity:
+          What You Read Is What You Wrote</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="reliable-product-launches.html">27.
+          Reliable Product Launches at Scale</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part4.html">Part IV - Management</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="accelerating-sre-on-call.html">28.
+          Accelerating SREs to On-Call and Beyond</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="dealing-with-interrupts.html">29.
+          Dealing with Interrupts</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="operational-overload.html">30. Embedding
+          an SRE to Recover from Operational Overload</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href=
+          "communication-and-collaboration.html">31. Communication and
+          Collaboration in SRE</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="evolving-sre-engagement-model.html">32.
+          The Evolving SRE Engagement Model</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="part5.html">Part V - Conclusions</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="lessons-learned.html">33. Lessons
+          Learned from Other Industries</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="conclusion.html">34. Conclusion</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="availability-table.html">Appendix A.
+          Availability Table</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="service-best-practices.html">Appendix B.
+          A Collection of Best Practices for Production Services</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="incident-document.html">Appendix C.
+          Example Incident State Document</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="postmortem.html">Appendix D. Example
+          Postmortem</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="launch-checklist.html">Appendix E.
+          Launch Coordination Checklist</a>
+        </li>
+        <li>
+          <a class="menu-buttons" href="bibliography.html">Appendix F.
+          Bibliography</a>
+        </li>
+      </ol>
+    </div>
+    <div id="maia-main" role="main">
+      <div class="maia-teleport" id="content"></div>
+      <div class="content">
+        <section data-type="chapter" id="chapter_outalator">
+          <h1 class="heading">
+            Tracking Outages
+          </h1>
+          <p class="byline author">
+            Written by Gabe Krabbe<br>
+            Edited by Lisa Carey
+          </p>
+          <p>
+            <a data-primary="outage tracking" data-secondary="baselines and progress tracking"
+            data-type="indexterm" id="id-rjCXSNtm"></a>Improving reliability over time is only
+            possible if you start from a known baseline and can track progress. "Outalator," our
+            outage tracker, is one of the tools we use to do just that. Outalator is a system that
+            passively receives all alerts sent by our monitoring systems and allows us to annotate,
+            group, and analyze this data.
+          </p>
+          <p>
+            Systematically learning from past problems is essential to effective service
+            management. Postmortems (see <a data-type="xref" href=
+            "postmortem-culture.html">Postmortem Culture: Learning from
+            Failure</a>) provide detailed information for individual outages, but they are only
+            part of the answer. They are only written for incidents with a large impact, so issues
+            that have individually small impact but are frequent and widespread don’t fall within
+            their scope. Similarly, postmortems tend to provide useful insights for improving a
+            single service or set of services, but may miss opportunities that would have a small
+            effect in individual cases, or opportunities that have a poor cost/benefit ratio, but
+            that would have large horizontal impact.<sup><a data-type="noteref" href=
+            "tracking-outages.html#id-a82udFOhV" id="id-a82udFOhV-marker">84</a></sup>
+          </p>
+          <p>
+            We can also get useful information from questions such as, "How many alerts per on-call
+            shift does this team get?", "What’s the ratio of actionable/nonactionable alerts over
+            the last quarter?", or even simply "Which of the services this team manages creates the
+            most toil?"
+          </p>
+          <section data-type="sect1" id="escalator-dbsncQ">
+            <h1 class="heading">
+              Escalator
+            </h1>
+            <p>
+              <a data-primary="outage tracking" data-secondary="Escalator" data-type="indexterm"
+              id="id-OnCNSmF7cO"></a><a data-primary="Escalator" data-type="indexterm" id=
+              "id-XmCpFOFPcp"></a>At Google, all alert notifications for SRE share a central
+              replicated system that tracks whether a human has acknowledged receipt of the
+              notification. If no acknowledgment is received after a configured interval, the
+              system escalates to the next configured destination(s)—e.g., from primary on-call to
+              secondary. This system, called "The Escalator," was initially designed as a largely
+              transparent tool that received copies of emails sent to on-call aliases. This
+              functionality allowed Escalator to easily integrate with existing workflows without
+              requiring any change in user behavior (or, at the time, monitoring system behavior).
+            </p>
+          </section>
+          <section data-type="sect1" id="outalator-BVsqiK">
+            <h1 class="heading">
+              Outalator
+            </h1>
+            <p>
+              <a data-primary="outage tracking" data-secondary="Outalator" data-type="indexterm"
+              id="OTout16"></a>Following Escalator’s example, where we added useful features to
+              existing infrastructure, we created a system that would deal not just with the
+              individual escalating notifications, but with the next layer of abstraction: outages.
+            </p>
+            <p>
+              <a data-primary="Outalator" data-secondary="benefits of" data-type="indexterm" id=
+              "id-jyCxSEIDiz"></a>Outalator lets users view a time-interleaved list of
+              notifications for multiple queues at once, instead of requiring a user to switch
+              between queues manually. <a data-type="xref" href="tracking-outages.html#outalator_queue">Figure 16-1</a>
+              shows multiple queues as they appear in Outalator’s queue view. This functionality is
+              handy because frequently a single SRE team is the primary point of contact for
+              services with distinct secondary escalation targets, usually the developer teams.
+            </p>
+            <figure class="horizontal vertical" id="outalator_queue">
+              <img alt="srle 1601" src="../images/srle-1601.jpg">
+              <figcaption>
+                <span class="label">Figure 16-1.</span> Outalator queue view
+              </figcaption>
+            </figure>
+            <p>
+              <a data-primary="Outalator" data-secondary="notification process" data-type=
+              "indexterm" id="id-pOCzSXhmie"></a>Outalator stores a copy of the original
+              notification and allows annotating incidents. For convenience, it silently receives
+              and saves a copy of any email replies as well. Because some follow-ups are less
+              helpful than others (for example, a reply-all sent with the sole purpose of adding
+              more recipients to the cc list), annotations can be marked as "important." If an
+              annotation is important, other parts of the message are collapsed into the interface
+              to cut down on clutter. Together, this provides more context when referring to an
+              incident than a possibly fragmented email thread.
+            </p>
+            <p>
+              Multiple escalating notifications ("alerts") can be combined into a single entity
+              ("incident") in the Outalator. These notifications may be related to the same single
+              incident, may be otherwise unrelated and uninteresting auditable events such as
+              privileged database access, or may be spurious monitoring failures. This grouping
+              functionality, shown in <a data-type="xref" href="tracking-outages.html#outalator_view_outage">Figure
+              16-2</a>, unclutters the overview displays and allows for separate analysis of
+              "incidents per day" versus "alerts per day."
+            </p>
+            <figure class="horizontal vertical" id="outalator_view_outage">
+              <img alt="srle 1602" src="../images/srle-1602.jpg">
+              <figcaption>
+                <span class="label">Figure 16-2.</span> Outalator view of an incident
+              </figcaption>
+            </figure>
+            <aside class="highlight" data-type="sidebar" id="building-your-own-outalator-AlSQi2i7">
+              <h5 class="heading">
+                Building Your Own Outalator
+              </h5>
+              <p>
+                <a data-primary="Outalator" data-secondary="building your own" data-type=
+                "indexterm" id="id-1nCxSqFeidio"></a>Many organizations use messaging systems like
+                Slack, Hipchat, or even IRC for internal communication and/or updating status
+                dashboards. These systems are great places to hook into with a system like
+                Outalator.
+              </p>
+            </aside>
+            <section data-type="sect2" id="aggregation-00sOu4io">
+              <h2 class="subheaders">
+                Aggregation
+              </h2>
+              <p>
+                <a data-primary="Outalator" data-secondary="aggregation in" data-type="indexterm"
+                id="id-YQCDSYF0uPiP"></a><a data-primary="aggregation" data-type="indexterm" id=
+                "id-vgCJFMFEuNib"></a>A single event may, and often will, trigger multiple alerts.
+                For example, network failures cause timeouts and unreachable backend services for
+                everyone, so all affected teams receive their own alerts, including the owners of
+                backend services; meanwhile, the network operations center will have its own
+                klaxons ringing. However, even smaller issues affecting a single service may
+                trigger multiple alerts due to multiple error conditions being diagnosed. While it
+                is worthwhile to attempt to minimize the number of alerts triggered by a single
+                event, triggering multiple alerts is unavoidable in most trade-off calculations
+                between false positives and false negatives.
+              </p>
+              <p>
+                The ability to group multiple alerts together into a single <em>incident</em> is
+                critical in dealing with this duplication. Sending an email saying "this is the
+                same thing as that other thing; they are symptoms of the same incident" works for a
+                given alert: it can prevent duplication of debugging or panic. But sending an email
+                for each alert is not a practical or scalable solution for handling duplicate
+                alerts within a team, let alone between teams or over longer periods of time.
+              </p>
+            </section>
+            <section data-type="sect2" id="tagging-LEs9UviB">
+              <h2 class="subheaders">
+                Tagging
+              </h2>
+              <p>
+                <a data-primary="Outalator" data-secondary="tagging in" data-type="indexterm" id=
+                "id-vgCPSMFBUNib"></a><a data-primary="false-positive alerts" data-type="indexterm"
+                id="id-lrClF8FzUQiJ"></a><a data-primary="alerts" data-secondary="false-positive"
+                data-type="indexterm" id="id-nxCvILFmUnip"></a><a data-primary="tagging" data-type=
+                "indexterm" id="id-NnCPtnFQUaia"></a>Of course, not every alerting event is an
+                incident. False-positive alerts occur, as well as test events or mistargeted emails
+                from humans. The Outalator itself does not distinguish between these events, but it
+                allows general-purpose <em>tagging</em> to add metadata to notifications, at any
+                level. Tags are mostly free-form, single "words." Colons, however, are interpreted
+                as semantic separators, which subtly promotes the use of hierarchical namespaces
+                and allows some automatic treatment. This namespacing is supported by suggested tag
+                prefixes, primarily "cause" and "action," but the list is team-specific and
+                generated based on historical usage. For example, "cause:network" might be
+                sufficient information for some teams, whereas another team might opt for more
+                specific tags, such as "cause:network:switch" versus "cause:network:cable." Some
+                teams may frequently use "customer:132456”-style tags, so "customer" would be
+                suggested for those teams, but not for others.
+              </p>
+              <p>
+                Tags can be parsed and turned into a convenient link ("bug:76543" links to the bug
+                tracking system). Other tags are just a single word ("bogus" is widely used for
+                false positives). Of course, some tags are typos ("cause:netwrok") and some tags
+                aren’t particularly helpful ("problem-went-away"), but avoiding a predetermined
+                list and allowing teams to find their own preferences and standards will result in
+                a more useful tool and better data. Overall, tags have been a remarkably powerful
+                tool for teams to obtain and provide an overview of a given service’s pain points,
+                even without much, or even any, formal analysis. As trivial as tagging appears, it
+                is probably one of the Outalator’s most useful unique features.
+              </p>
+            </section>
+            <section data-type="sect2" id="analysis-AVsAC2i7">
+              <h2 class="subheaders">
+                Analysis
+              </h2>
+              <p>
+                <a data-primary="Outalator" data-secondary="incident analysis" data-type=
+                "indexterm" id="id-lrCPS8FkCQiJ"></a><a data-primary=
+                "data analysis, with Outalator" data-type="indexterm" id="id-nxCzFLF2Cnip"></a>Of
+                course, SRE does much more than just react to incidents. Historical data is useful
+                when one is responding to an incident—the question "what did we do last time?" is
+                always a good starting point. But historical information is far more useful when it
+                concerns systemic, periodic, or other wider problems that may exist. Enabling such
+                analysis is one of the most important functions of an outage tracking tool.
+              </p>
+              <p>
+                The bottom layer of analysis encompasses counting and basic aggregate statistics
+                for reporting. The details depend on the team, but include information such as
+                incidents per week/month/quarter and alerts per incident. The next layer is more
+                important, and easy to provide: comparison between teams/services and over time to
+                identify first patterns and trends. This layer allows teams to determine whether a
+                given alert load is "normal" relative to their own track record and that of other
+                services. "That’s the third time this week" can be good or bad, but knowing whether
+                "it" used to happen five times per day or five times per month allows
+                interpretation.
+              </p>
+              <p>
+                The next step in data analysis is finding wider issues, which are not just raw
+                counts but require some semantic analysis. For example, identifying the
+                infrastructure component causing most incidents, and therefore the potential
+                benefit from increasing the stability or performance of this
+                component,<sup><a data-type="noteref" href="tracking-outages.html#id-VjDuPSjtACQiL" id=
+                "id-VjDuPSjtACQiL-marker">85</a></sup> assumes that there is a straightforward way
+                to provide this information alongside the incident records. As a simple example:
+                different teams have service-specific alert conditions such as "stale data" or
+                "high latency." Both conditions may be caused by network congestion leading to
+                database replication delays and need intervention. Or, they could be within the
+                nominal service level objective, but are failing to meet the higher expectations of
+                users. Examining this information across multiple teams allows us to identify
+                systemic problems and choose the correct solution, especially if the solution may
+                be the introduction of more artificial failures to stop over-performing.
+              </p>
+              <section data-type="sect3" id="reporting-and-communication-DVsGhpC1iJ">
+                <h3 class="subheaders">
+                  Reporting and communication
+                </h3>
+                <p>
+                  <a data-primary="Outalator" data-secondary="reporting and communication"
+                  data-type="indexterm" id="id-mwCoSyFphECGiO"></a><a data-primary=
+                  "communication and collaboration" data-secondary="with Outalator"
+                  data-secondary-sortas="Outalator" data-type="indexterm" id=
+                  "id-dkCbFyFvhQC4iY"></a>Of more immediate use to frontline SREs is the ability to
+                  select zero or more outalations and include their subjects, tags, and "important"
+                  annotations in an email to the next on-call engineer (and an arbitrary cc list)
+                  in order to pass on recent state between shifts. For periodic reviews of the
+                  production services (which occur weekly for most teams), the Outalator also
+                  supports a "report mode," in which the important annotations are expanded inline
+                  with the main list in order to provide a quick overview of
+                  lowlights.<a data-primary="" data-startref="OTout16" data-type="indexterm" id=
+                  "id-BnCjIjF4hxCAiz"></a>
+                </p>
+              </section>
+            </section>
+            <section data-type="sect2" id="unexpected-benefits-WEsksriM">
+              <h2 class="subheaders">
+                Unexpected Benefits
+              </h2>
+              <p>
+                <a data-primary="outage tracking" data-secondary="benefits of" data-type=
+                "indexterm" id="id-nxC1SLFJsnip"></a>Being able to identify that an alert, or a
+                flood of alerts, coincides with a given other outage has obvious benefits: it
+                increases the speed of diagnosis and reduces load on other teams by acknowledging
+                that there is indeed an incident. There are additional nonobvious benefits. To use
+                Bigtable as an example, if a service has a disruption due to an apparent Bigtable
+                incident, but you can see that the Bigtable SRE team has not been alerted, manually
+                alerting the team is probably a good idea. Improved cross-team visibility can and
+                does make a big difference in incident resolution, or at least in incident
+                mitigation.
+              </p>
+              <p>
+                Some teams across the company have gone so far as to set up dummy escalator
+                configurations: no human receives the notifications sent there, but the
+                notifications appear in the Outalator and can be tagged, annotated, and reviewed.
+                One example for this "system of record" use is to log and audit the use of
+                privileged or role accounts (though it must be noted that this functionality is
+                basic, and used for technical, rather than legal, audits). Another use is to record
+                and automatically annotate runs of periodic jobs that may not be idempotent—for
+                example, automatic application of schema changes from version control to database
+                systems.
+              </p>
+            </section>
+          </section>
+          <div class="footnotes" data-type="footnotes">
+            <p data-type="footnote" id="id-a82udFOhV">
+              <sup><a href="tracking-outages.html#id-a82udFOhV-marker">84</a></sup>For example, it might take
+              significant engineering effort to make a particular change to Bigtable that only has
+              a small mitigating effect for one outage. However, if that same mitigation were
+              available across many events, the engineering effort may well be worthwhile.
+            </p>
+            <p data-type="footnote" id="id-VjDuPSjtACQiL">
+              <sup><a href="tracking-outages.html#id-VjDuPSjtACQiL-marker">85</a></sup>On the one hand, "most incidents
+              caused" is a good starting point for reducing the number of alerts triggered and
+              improving the overall system. On the other hand, this metric may simply be an
+              artifact of over-sensitive monitoring or a small set of client systems misbehaving or
+              themselves running outside the agreed service level. And on the gripping hand, the
+              number of incidents alone gives no indication as to the difficulty to fix or severity
+              of impact.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="maia-aux">
+        <div class="previous">
+          <a href="postmortem-culture.html">
+          <p class="footer-caption">
+            previous
+          </p>
+          <p class="chapter-link">
+            Chapter 15- Postmortem Culture: Learning from Failure
+          </p></a>
+        </div>
+        <div class="next">
+          <a href="testing-reliability.html">
+          <p class="footer-caption">
+            next
+          </p>
+          <p class="chapter-link">
+            Chapter 17- Testing for Reliability
+          </p></a>
+        </div>
+        <p class="footer-link">
+          Copyright © 2017 Google, Inc. Published by O'Reilly Media, Inc. Licensed under <a href=
+          "https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>
+        </p>
+      </div>
+    </div>
+    <script src="../js/main.min.js">
+    </script> 
+    <script src="../js/maia.js">
+    </script>
+  </body>
+</html>
